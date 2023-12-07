@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import selectArrowIcon from "../../assets/images/select-arrow-down-black.png";
 
-const Select = ({ optionObj, showIcons }) => {
+const Select = ({ optionObj, showIcons ,className }) => {
   const initialOpt = optionObj?.[0];
   const [activeSelect, setActiveSelect] = useState(initialOpt);
   const [showOptions, setShowOption] = useState(false);
@@ -21,13 +21,13 @@ const Select = ({ optionObj, showIcons }) => {
   }, [selectRef]);
 
   return (
-    <div className="screen-genius-select-area" ref={selectRef}>
+    <div className={`screen-genius-select-area ${className}`} ref={selectRef}>
       <div
         className="screen-genius-title"
         onClick={() => setShowOption(!showOptions)}
       >
         <img src={activeSelect?.img} alt="" />
-        <div>{activeSelect?.title}</div>
+        <div id="title" value={activeSelect?.title}>{activeSelect?.title}</div>
         <img className="arrow-img" src={selectArrowIcon} alt=""></img>
       </div>
       {showOptions && (

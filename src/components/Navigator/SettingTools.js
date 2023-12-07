@@ -11,38 +11,11 @@ import logoFooterIcon from "../../assets/images/quixy-logo-footer.png";
 import FeedbackModal from "../FeedbackModal/FeedbackModal";
 import Select from "../Select/Select";
 import Delay from "../Delay/Delay";
-import { videoQualityOption } from "../../helper/data";
+import { videoQualityOption} from "../../helper/data";
+import { handlegotoDashboard, handlegotoQuixy, handleuserLogin, handleuserLogout, handleuserSocialLogin, handleuserFeedback } from "../../helper/helper";
 
 const SettingTools = ({ handleCloseSettTools }) => {
   const [handleFeedbackModal, setHandleFeedbackModal] = useState(false);
-  useEffect(() => {
-    console.log("jjjfwkjfkjewkjfkjwekjfklejklfjeklwjklfjwkl")
-    const addFeedbackButton = document.getElementById("add-feedback");
-   
-    const handleFeedbackClick = () => {
-      console.log("jgmso")
-    if (typeof chrome !== "undefined") {
-      chrome.runtime.sendMessage({ action: "openFeedbackPopup" });
-    } else {
-      console.log(
-        "chrome.runtime is not available. This may not work outside the extension environment."
-      );
-    }
-  };
-
-  if (addFeedbackButton) {
-    addFeedbackButton.addEventListener("click", handleFeedbackClick);
-  }
-
-  return () => {
-    // Cleanup: remove event listener when component unmounts
-    if (addFeedbackButton) {
-      addFeedbackButton.removeEventListener("click", handleFeedbackClick);
-    }
-  };
-}, []); 
-  
-  
   return (
     <>
       <div id="quix-settings-wrapper" className="quix-settings-wrapper">
@@ -76,7 +49,7 @@ const SettingTools = ({ handleCloseSettTools }) => {
                 <Delay defaultVal={3} minVal={3} maxVal={59} />
               </div>
               <label>GENERAL SETTINGS</label>
-              <div className="quix-autostop-record quix-tools-block user-loggedIn">
+              <div className="quix-autostop-record quix-tools-block user-loggedIn" onClick={()=> handlegotoDashboard()}>
                 <img alt="" src={dashboardIcon} />
                 <span>Go to Dashboard</span>
                 <img
@@ -87,7 +60,7 @@ const SettingTools = ({ handleCloseSettTools }) => {
               </div>
               <div
                 className="quix-autostop-record quix-tools-block" id="add-feedback"
-                // onClick={() => setHandleFeedbackModal(!handleFeedbackModal)}
+                onClick={() => handleuserFeedback()}
               >
                 <img alt="" src={feedbackIcon} />
                 <span>Add a Feedback</span>
@@ -97,15 +70,15 @@ const SettingTools = ({ handleCloseSettTools }) => {
                   src={settignRightArrowIcon}
                 />
               </div>
-              <div className="quix-autostop-record quix-tools-block user-loggedOut">
+              <div className="quix-autostop-record quix-tools-block user-loggedOut" onClick={()=> handleuserSocialLogin()}>
                 <img alt="" src={logoutIcon} />
                 <span>Log In</span>
               </div>
-              <div className="quix-autostop-record quix-tools-block user-loggedOut">
+              <div className="quix-autostop-record quix-tools-block user-loggedOut" onClick={()=> handleuserLogin()}>
                 <img alt="" src={googleIcon} />
                 <span>Log In with Gmail</span>
               </div>
-              <div className="quix-autostop-record quix-tools-block user-loggedIn">
+              <div className="quix-autostop-record quix-tools-block user-loggedIn" onClick={()=> handleuserLogout()}>
                 <img alt="" src={logoutIcon} />
                 <span>Log Out</span>
               </div>
@@ -114,7 +87,7 @@ const SettingTools = ({ handleCloseSettTools }) => {
           <div className="quix-settings-footer">
             <div className="quix-settings-footer-inner">
               <span>powered by</span>
-              <img src={logoFooterIcon} alt="" />
+              <img onClick={()=> handlegotoQuixy()} src={logoFooterIcon} alt="" />
             </div>
           </div>
         </div>

@@ -5,10 +5,9 @@ const DeviceSelection = ({title,disabledIcon,enabledIcon}) => {
     const [showOptions, setShowOption] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
     const selectRef = useRef(null);
-    console.log("hello")
     useEffect(() => {
       const handleClickOutside = (event) => {
-        console.log("outside", selectRef.current.contains(event.target))
+        //console.log("outside", selectRef.current.contains(event.target))
         if (selectRef.current && !selectRef.current.contains(event.target)) {
           // console.log(selectRef.current, "dgdgdgdgdg", !selectRef.current.contains(event.target),"gdhdhhhh", selectRef)
           setShowOption(false);
@@ -59,4 +58,4 @@ const DeviceSelection = ({title,disabledIcon,enabledIcon}) => {
   );
 };
 
-export default DeviceSelection;
+// export default DeviceSelection;

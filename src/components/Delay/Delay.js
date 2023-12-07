@@ -5,13 +5,16 @@ import greaterIcon from "../../assets/images/quix-greater.png";
 
 const Delay = ({ defaultVal, minVal, maxVal }) => {
   let [delayValue, setDelayValue] = useState(defaultVal);
-
+  console.log(defaultVal, delayValue, "ffsdfsfs")
   const handleMangeDelayTime =(type)=>{
+    console.log(delayValue)
     if(type === 'minus' && delayValue > minVal){
-      setDelayValue(delayValue - 1 )
+      setDelayValue(delayValue - 1 );
+      console.log(defaultVal, delayValue, "minus")
     }
     if(type === 'plus' && delayValue < maxVal){
-      setDelayValue(delayValue + 1 )
+      setDelayValue(delayValue + 1 );
+      console.log(defaultVal, delayValue, "plus")
     }
   }
 
@@ -28,7 +31,7 @@ const Delay = ({ defaultVal, minVal, maxVal }) => {
       <input
         type="text"
         value={delayValue + "s"}
-        className="quix-capture-delay"
+        className="quix-capture-delay quix-record-delay"
         readOnly
       />
       <div id="quix-plus-minus-outer">

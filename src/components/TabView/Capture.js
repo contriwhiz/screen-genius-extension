@@ -1,13 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import delayIcon from "../../assets/images/quix-delay.png";
 import fullPageIcon from "../../assets/images/quix-full-page.png";
 import visiblePartIcon from "../../assets/images/quix-visible-area.png";
 import selectAreaIcon from "../../assets/images/quix-selected-screen.png";
+import saveIcon from "../../assets/images/quix-save.png";
+import saveWhiteIcon from "../../assets/images/quix-save-white.png";
+import saveCloudIcon from "../../assets/images/quix-save-cloud.png";
+import saveCloudWhiteIcon from "../../assets/images/quix-save-cloud-white.png";
+import selectArrowDownBlack from "../../assets/images/select-arrow-down-black.png";
 import Select from "../Select/Select";
 import { downloadOption } from "../../helper/data";
 import Delay from "../Delay/Delay";
+import {
+  handleCaptureScreen,
+  handleOpenEditor,
+  openDropdown,
+  selectDropdownValue,
+} from "../../helper/helper";
 
 const Capture = () => {
+  // const [initDelay,setInitDelay]  =useState(0)
+  // useEffect(()=>{
+  //   let initValue = document?.querySelector('.quix-capture-delay')?.value
+  //   let modified_string =  initValue?.replace('s', '')
+  //    let result_number = parseInt(modified_string)
+  //    setInitDelay(result_number)
+  // },[])
+ 
+
   return (
     <>
       <div className="quix-tab-toolbox">
@@ -27,25 +47,86 @@ const Capture = () => {
               </div>
             </div>
           </div>
-          <Select optionObj={downloadOption} showIcons={true} />
+          {/* <Select className={'quix-screenshot-video-upload'} optionObj={downloadOption} showIcons={true} /> */}
+          <div className="quix-desktop-only quix-tools-block quix-screenshot-upload-dropdown">
+            <img className="quix-upload-type-icon" alt="" src={saveIcon} />
+            <div
+              className="quix-upload-options-selected"
+              onClick={() => openDropdown("screenshot-upload-dropdown")}
+            >
+              Local
+            </div>
+            <img
+              alt=""
+              onClick={() => openDropdown("screenshot-upload-dropdown")}
+              className="quix-select-arrow-down"
+              src={selectArrowDownBlack}
+            />
+            <select className="quix-screenshot-video-upload">
+              <option value="Local">Local</option>
+              <option value="Cloud">Cloud</option>
+            </select>
+            <div className="quix-recorder-video-upload-options">
+              <div className="quix-recorder-video-upload-options-inner">
+                <div
+                  className="quix-upload-options-row"
+                  onClick={() =>
+                    selectDropdownValue("screenshot-upload-dropdown")
+                  }
+                >
+                  <img
+                    alt=""
+                    data-inactive={saveIcon}
+                    data-active={saveWhiteIcon}
+                    src={saveIcon}
+                  />
+                  <span>Local</span>
+                </div>
+                <div
+                  className="quix-upload-options-row"
+                  onClick={() =>
+                    selectDropdownValue("screenshot-upload-dropdown")
+                  }
+                >
+                  <img
+                    alt=""
+                    data-inactive={saveCloudIcon}
+                    data-active={saveCloudWhiteIcon}
+                    src={saveCloudIcon}
+                  />
+                  <span>Cloud</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="quix-screenshot-items-label">
           <span>Click to start an action</span>
         </div>
         <ul>
-          <li className="quix-full-page-elem">
+          {/* onClick={handleCaptureScreen(1)} */}
+          <li
+            className="quix-full-page-elem"
+            onClick={(e) => handleCaptureScreen(1, e)}
+          >
             <div className="quix-image-outer">
               <img alt="" src={fullPageIcon} />
             </div>
             <span>Full Page</span>
           </li>
-          <li className="quix-visible-part-elem">
+          <li
+            className="quix-visible-part-elem"
+            onClick={(e) => handleCaptureScreen(2, e)}
+          >
             <div className="quix-image-outer">
               <img alt="" src={visiblePartIcon} />
             </div>
             <span>Visible Part</span>
           </li>
-          <li className="quix-selected-area-elem">
+          <li
+            className="quix-selected-area-elem"
+            onClick={(e) => handleCaptureScreen(3, e)}
+          >
             <div className="quix-image-outer">
               <img alt="" src={selectAreaIcon} />
             </div>
@@ -67,8 +148,10 @@ const Capture = () => {
       <div className="quix-popup-inner-bottom">
         <div className="quix-footer-row1">
           <div className="quix-footer-block quix-block-local-rec">
-            <img alt="" src="images/quix-editor.png"/>
-            <span edit-type="screenshot">Open Image Editor</span>
+            <img alt="" src="images/quix-editor.png" />
+            <span edit-type="screenshot" onClick={() => handleOpenEditor()}>
+              Open Image Editor
+            </span>
           </div>
         </div>
       </div>

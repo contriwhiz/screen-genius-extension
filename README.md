@@ -69,6 +69,37 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
+{
+  "manifest_version": 3,
+  "name": "ScreenGenius - Screenshot & Video capture tool",
+  "version": "1.1",
+  "description": "Screenshot & Video capture tool",
+  "background": {
+    "service_worker": "./js/background.js"
+  },
+  "content_scripts": [
+   {
+     "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "match_origin_as_fallback": true,
+     "css": ["./css/content.css"],
+     "js": ["./js/content.js"],
+     "all_frames": false
+   }
+ ],
+ 
+  "permissions": ["storage", "tabs", "activeTab", "scripting","unlimitedStorage","identity", "identity.email"],
+  "host_permissions": ["<all_urls>"],
+  "author": "Quixy",
+  "short_name": "Snapprr",
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Snapprr - Screenshot & Video capture tool"
+  }
+}
+
 
 //background.js
    const loaderIcon = "/images/light-loader.gif";

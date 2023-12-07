@@ -596,7 +596,7 @@ span.quix-recorder-slider.quix-recorder-round {
     top: 0;
 }
 .quix-tools-block select {
-    margin: 8px 3px 7px 0px;
+    /* margin: 8px 3px 7px 0px;
     border: none;
     background: transparent;
     float: right;
@@ -605,7 +605,14 @@ span.quix-recorder-slider.quix-recorder-round {
     left: 0;
     opacity: 0;
     height: 100%;
-    top: -6px;
+    top: -6px; */
+    background: transparent;
+    border: none;
+    float: right;
+    margin: 8px 3px 7px 0;
+}
+.quix-disabled-icon-state, .quix-recorder-iscamera, .quix-recorder-ismic, .quix-recorder-video-quality, .quix-recorder-video-upload, .quix-recorder-video-upload-options, .quix-screenshot-video-upload {
+    display: none;
 }
 .quix-tab-settings-label {
     float: left;
@@ -1334,6 +1341,9 @@ div#quix-signin-inner {
     background: #000;
     color: #FFF;
 }
+
+
+/* ======================================================================== */
 .quix-recording-block.inactive {
     opacity: 0.3;
     background: #DEDEDE;

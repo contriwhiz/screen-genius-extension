@@ -1,8 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import TabsView from '../components/TabView/TabView';
 import Header from '../components/Navigator/Header';
+import {handleCloseToolbar, handleWebcam, handleMicrophone, handleToolbarPanel, handleButtonDelete, handleButtonPause, handleButtonStop, handleuserSocialLogin, handleSigninPopup, handleSigninClose, customEffect } from '../helper/helper';
 
 const Popup = () => {
+  
+useEffect(()=>{
+  customEffect()
+})
     return(
         <div className="quix-popup-outer-main">
           <div className="quix-popup-outer quix-capture-area">
@@ -20,7 +25,7 @@ const Popup = () => {
                   <img alt="" className="quix-popup-toolbar-drag-icon" src="images/quix-drag-icon.png"/>
                   <span>Recording...</span>
                 </div>
-                <div className="quix-popup-toolbar-top-right">
+                <div className="quix-popup-toolbar-top-right" onClick={()=>handleCloseToolbar()}>
                   <img alt="" src="images/quix-close-icon2.png"/>
                 </div>
                 <div className="quix-popup-toolbar-top-mid">
@@ -28,28 +33,29 @@ const Popup = () => {
                     <div className="quix-desktop-only quix-microphone-option quix-tools-block">
                       <img alt="" className="quix-tool-enabled-icon-state" src="images/quix-microphone-icon2.png"/>
                       <img alt="" className="quix-tool-disabled-icon-state" src="images/quix-microphone-disabled-icon.png"/>
-                      <label className="quix-recorder-switch"><input type="checkbox" name="is-tool-microphone"/></label>
+                      <label className="quix-recorder-switch"><input type="checkbox"
+                      onChange={()=> handleMicrophone()} name="is-tool-microphone"/></label>
                     </div> 
                     <div className="quix-desktop-only quix-camera-option quix-tools-block">
                       <img alt="" className="quix-tool-enabled-icon-state" src="images/quix-webcam-tool.png"/>
                       <img alt="" className="quix-tool-disabled-icon-state" src="images/quix-webcam-disabled-tool.png"/>
-                      <label className="quix-recorder-switch"><input type="checkbox" name="is-tool-camera"/></label>
+                      <label className="quix-recorder-switch"><input type="checkbox" onChange={()=>handleWebcam()} name="is-tool-camera"/></label>
                     </div>
                     <div className="quix-desktop-only quix-toolbar-option quix-tools-block">
                       <img alt="" className="quix-tool-enabled-icon-state" src="images/quix-toolbox.png"/>
                       <img alt="" className="quix-tool-disabled-icon-state" src="images/quix-toolbox-dis.png"/>
-                      <label className="quix-recorder-switch"><input type="checkbox" name="is-tool-toobar"/></label>
+                      <label className="quix-recorder-switch"><input type="checkbox" onChange={()=> handleToolbarPanel()} name="is-tool-toobar"/></label>
                     </div>
                     <div className="quix-desktop-only quix-delete-option quix-tools-block">
-                      <img alt="" className="quix-enabled-icon-state" src="images/quix-delete-icon.png"/>
+                      <img alt="" onClick={()=> handleButtonDelete()} className="quix-enabled-icon-state" src="images/quix-delete-icon.png"/>
                     </div>
                     <div className="quix-desktop-only quix-play-option quix-tools-block">
                       <img alt="" className="quix-tool-enabled-icon-state" src="images/quix-tool-pause.png"/>
                       <img alt="" className="quix-tool-disabled-icon-state" src="images/quix-tool-play.png"/>
-                      <label className="quix-recorder-switch"><input type="checkbox" name="is-play-toobar"/></label>
+                      <label className="quix-recorder-switch"><input type="checkbox" onChange={()=> handleButtonPause()} name="is-play-toobar"/></label>
                     </div>
                     <div className="quix-desktop-only quix-stop-option quix-tools-block">
-                      <img alt="" className="quix-enabled-icon-state" src="images/quix-tool-stop.png"/>
+                      <img alt="" onClick={()=> handleButtonStop()} className="quix-enabled-icon-state" src="images/quix-tool-stop.png"/>
                     </div>
                   </div>
                 </div>
@@ -94,9 +100,9 @@ const Popup = () => {
               <div className="quix-signin-row"><img alt="" src="images/quix-signin-folder.png"/><span>Fast Access to screenshots / videos</span></div>
               <div className="quix-signin-row"><img alt="" src="images/quix-signin-gallery.png"/><span>Easily share Images / videos via link with anyone</span></div>
               <div className="quix-signin-row"><img alt="" src="images/quix-signin-link.png"/><span>Using URL save all the screenshots together</span></div>
-              <div className="quix-signin-button"><span>Sign In</span></div>
-              <div className="quix-signin-button"><span>Sign In with Gmail</span></div>
-              <div className="quix-signin-close"><img alt="" src="images/quix-signin-close-circle.png"/></div>
+              <div className="quix-signin-button" onClick={()=> handleuserSocialLogin()}><span>Sign In</span></div>
+              <div className="quix-signin-button" onClick={()=> handleSigninPopup()}><span>Sign In with Gmail</span></div>
+              <div className="quix-signin-close" onClick={()=> handleSigninClose()}><img alt="" src="images/quix-signin-close-circle.png"/></div>
             </div>
           </div>
           <div id="quix-popup-loader">

@@ -3,7 +3,7 @@ import Capture from "./Capture";
 import Recorder from "./Recorder";
 import captureIcon from "../../assets/images/quix-screen-recording.png";
 import recorderIcon from "../../assets/images/quix-camera-recording.png";
-
+import { handleCaptureMode } from "../../helper/helper";
 const TabsView = () => {
   const [tabHandler, setTabHendler] = useState(0);
   return (
@@ -13,7 +13,10 @@ const TabsView = () => {
           className={`quix-capture-mode quix-screenshot-capture ${
             tabHandler === 0 ? "active" : "inactive"
           }`}
-          onClick={() => setTabHendler(0)}
+          onClick={() => {
+            setTabHendler(0);
+            handleCaptureMode('screenshot');
+          }}
           title="Screenshot Capture"
         >
           <img alt="" src={captureIcon} />
@@ -24,7 +27,10 @@ const TabsView = () => {
             tabHandler === 1 ? "active" : "inactive"
           }`}
           title="Video Recording"
-          onClick={() => setTabHendler(1)}
+          onClick={() => {
+            setTabHendler(1);
+            handleCaptureMode('recorder');
+          }}
         >
           <img alt="" src={recorderIcon} />
           <span>Recorder</span>
